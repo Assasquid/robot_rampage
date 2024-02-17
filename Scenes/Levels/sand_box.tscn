@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtdqrb244x3wg"]
+[gd_scene load_steps=8 format=3 uid="uid://dtdqrb244x3wg"]
 
 [ext_resource type="PackedScene" uid="uid://du507tj6ct103" path="res://Scenes/player.tscn" id="1_uvhpn"]
 
@@ -14,6 +14,21 @@ background_mode = 2
 sky = SubResource("Sky_kb8tp")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g63vk"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 1.0
+roughness = 0.63
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ai4wa"]
+albedo_color = Color(0.12549, 0.521569, 1, 1)
+metallic = 1.0
+roughness = 0.63
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2aeto"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+roughness = 0.63
 
 [node name="SandBox" type="Node3D"]
 
@@ -31,3 +46,26 @@ size = Vector3(64, 1, 64)
 
 [node name="Player" parent="." instance=ExtResource("1_uvhpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="NorthWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -31.75)
+size = Vector3(63, 1, 0.5)
+material = SubResource("StandardMaterial3D_g63vk")
+
+[node name="EastWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, 0.5, 0)
+size = Vector3(0.5, 1, 64)
+
+[node name="SouthWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 31.75)
+size = Vector3(63, 1, 0.5)
+material = SubResource("StandardMaterial3D_ai4wa")
+
+[node name="WestWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.75, 0.5, 0)
+size = Vector3(0.5, 1, 64)
+
+[node name="Squantz" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -16)
+size = Vector3(4, 3, 4)
+material = SubResource("StandardMaterial3D_2aeto")
