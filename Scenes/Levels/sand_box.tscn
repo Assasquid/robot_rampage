@@ -49,23 +49,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="NorthWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -31.75)
+use_collision = true
 size = Vector3(63, 1, 0.5)
 material = SubResource("StandardMaterial3D_g63vk")
 
 [node name="EastWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, 0.5, 0)
+use_collision = true
 size = Vector3(0.5, 1, 64)
 
 [node name="SouthWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 31.75)
+use_collision = true
 size = Vector3(63, 1, 0.5)
 material = SubResource("StandardMaterial3D_ai4wa")
 
 [node name="WestWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.75, 0.5, 0)
+use_collision = true
 size = Vector3(0.5, 1, 64)
 
 [node name="Squantz" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -16)
+use_collision = true
 size = Vector3(4, 3, 4)
 material = SubResource("StandardMaterial3D_2aeto")
