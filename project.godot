@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="RoboRampage"
+run/main_scene="res://Levels/sand_box.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
