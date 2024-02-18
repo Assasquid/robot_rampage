@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @export var mouse_sensitivity := 0.001
 @export var jump_height:= 1.0
+## This is to control the feel of the jump. It modifies the gravity when falling back down.
+@export var fall_multiplier:= 2.6
 
 const SPEED = 5.0
 
@@ -22,7 +24,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		if velocity.y >= 0:
+			velocity.y -= gravity * delta
+		else:
+			velocity.y -= gravity * delta * fall_multiplier
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtdqrb244x3wg"]
+[gd_scene load_steps=9 format=3 uid="uid://dtdqrb244x3wg"]
 
 [ext_resource type="PackedScene" uid="uid://du507tj6ct103" path="res://Scenes/player.tscn" id="1_uvhpn"]
 
@@ -15,6 +15,10 @@ sky = SubResource("Sky_kb8tp")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy1mu"]
+metallic = 1.0
+roughness = 0.69
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g63vk"]
 albedo_color = Color(1, 0, 0, 1)
 metallic = 1.0
@@ -27,8 +31,8 @@ roughness = 0.63
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2aeto"]
 albedo_color = Color(0, 0, 0, 1)
-metallic = 1.0
-roughness = 0.63
+metallic = 0.8
+roughness = 0.2
 
 [node name="SandBox" type="Node3D"]
 
@@ -36,13 +40,14 @@ roughness = 0.63
 environment = SubResource("Environment_bawuj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.904669, 0.40225, -0.140602, -0.307406, 0.84459, 0.438371, 0.295086, -0.353359, 0.887728, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(64, 1, 64)
+material = SubResource("StandardMaterial3D_iy1mu")
 
 [node name="Player" parent="." instance=ExtResource("1_uvhpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -80,6 +85,12 @@ material = SubResource("StandardMaterial3D_2aeto")
 [node name="OneMeterBox" type="CSGBox3D" parent="BoxAndStairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -14.5)
 use_collision = true
+material = SubResource("StandardMaterial3D_2aeto")
+
+[node name="OneMeterBox2" type="CSGBox3D" parent="BoxAndStairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -12.5)
+use_collision = true
+size = Vector3(1, 1, 3)
 material = SubResource("StandardMaterial3D_2aeto")
 
 [node name="TwoMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
