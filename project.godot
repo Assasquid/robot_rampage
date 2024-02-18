@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="RoboRampage"
+config/name="RobotRampage"
 run/main_scene="res://Scenes/Levels/sand_box.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
