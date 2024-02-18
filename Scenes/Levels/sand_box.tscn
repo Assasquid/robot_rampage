@@ -1,6 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtdqrb244x3wg"]
+[gd_scene load_steps=10 format=3 uid="uid://dtdqrb244x3wg"]
 
 [ext_resource type="PackedScene" uid="uid://du507tj6ct103" path="res://Scenes/player.tscn" id="1_uvhpn"]
+[ext_resource type="Material" uid="uid://tjyna3qf3xw7" path="res://Materials/dark_gray.tres" id="2_6erlh"]
+[ext_resource type="Material" uid="uid://bggvu8vb13dex" path="res://Materials/metallic_red.tres" id="2_rsd1k"]
+[ext_resource type="Material" uid="uid://d3thjnycqwcdn" path="res://Materials/metallic_blue.tres" id="3_e33iv"]
+[ext_resource type="Material" uid="uid://bcowfbkdlkkgg" path="res://Materials/metallic_white.tres" id="4_bglnl"]
+[ext_resource type="Material" uid="uid://db5l68v7rqwyp" path="res://Materials/item_orange.tres" id="5_47xnw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3von"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,25 +20,6 @@ sky = SubResource("Sky_kb8tp")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy1mu"]
-metallic = 1.0
-roughness = 0.69
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g63vk"]
-albedo_color = Color(1, 0, 0, 1)
-metallic = 1.0
-roughness = 0.63
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ai4wa"]
-albedo_color = Color(0.12549, 0.521569, 1, 1)
-metallic = 1.0
-roughness = 0.63
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2aeto"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 0.8
-roughness = 0.2
-
 [node name="SandBox" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -47,7 +33,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(64, 1, 64)
-material = SubResource("StandardMaterial3D_iy1mu")
+material = ExtResource("2_6erlh")
 
 [node name="Player" parent="." instance=ExtResource("1_uvhpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -56,87 +42,89 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -31.75)
 use_collision = true
 size = Vector3(63, 1, 0.5)
-material = SubResource("StandardMaterial3D_g63vk")
+material = ExtResource("2_rsd1k")
 
 [node name="EastWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, 0.5, 0)
 use_collision = true
 size = Vector3(0.5, 1, 64)
+material = ExtResource("4_bglnl")
 
 [node name="SouthWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 31.75)
 use_collision = true
 size = Vector3(63, 1, 0.5)
-material = SubResource("StandardMaterial3D_ai4wa")
+material = ExtResource("3_e33iv")
 
 [node name="WestWall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.75, 0.5, 0)
 use_collision = true
 size = Vector3(0.5, 1, 64)
+material = ExtResource("4_bglnl")
 
-[node name="BoxAndStairs" type="Node" parent="."]
+[node name="LevelObjects" type="Node3D" parent="."]
 
-[node name="Squantz" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="Squantz" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -16)
 use_collision = true
 size = Vector3(4, 9, 4)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("2_6erlh")
 
-[node name="OneMeterBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="OneMeterBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -14.5)
 use_collision = true
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="OneMeterBox2" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="OneMeterBox2" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -12.5)
 use_collision = true
 size = Vector3(1, 1, 3)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="TwoMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="TwoMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -15.5)
 use_collision = true
 size = Vector3(1, 2, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="ThreeMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="ThreeMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, -16.5)
 use_collision = true
 size = Vector3(1, 3, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="FourMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="FourMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, -17.5)
 use_collision = true
 size = Vector3(1, 4, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="FiveMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="FiveMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -18.5)
 use_collision = true
 size = Vector3(1, 5, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="SixMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="SixMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 3, -18.5)
 use_collision = true
 size = Vector3(1, 6, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="SevenMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="SevenMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3.5, -18.5)
 use_collision = true
 size = Vector3(1, 7, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="EightMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="EightMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, -18.5)
 use_collision = true
 size = Vector3(1, 8, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
 
-[node name="NineMetersBox" type="CSGBox3D" parent="BoxAndStairs"]
+[node name="NineMetersBox" type="CSGBox3D" parent="LevelObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 4.5, -18.5)
 use_collision = true
 size = Vector3(1, 9, 1)
-material = SubResource("StandardMaterial3D_2aeto")
+material = ExtResource("5_47xnw")
