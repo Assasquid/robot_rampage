@@ -14,6 +14,7 @@ var mouse_motion := Vector2.ZERO
 var health: int = max_health:
 	set(new_value):
 		health = new_value
+		print(health)
 		if health <= 0:
 			get_tree().quit()
 
