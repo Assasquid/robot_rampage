@@ -1,16 +1,21 @@
 extends CharacterBody3D
 
 @export var mouse_sensitivity := 0.001
-@export var jump_height:= 1.0
+@export var jump_height := 1.0
 ## This is to control the feel of the jump. It modifies the gravity when falling back down.
-@export var fall_multiplier:= 2.6
+@export var fall_multiplier := 2.6
+@export var max_health := 100
 
 const SPEED = 5.0
-
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var mouse_motion := Vector2.ZERO
+var health: int = max_health:
+	set(new_value):
+		health = new_value
+		if health <= 0:
+			get_tree().quit()
 
 @onready var camera_pivot: Node3D = $CameraPivot
 

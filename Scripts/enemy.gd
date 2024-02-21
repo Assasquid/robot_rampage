@@ -6,6 +6,7 @@ const SPEED = 4.42
 @export var aggro_range := 12.0
 @export var attack_range := 1.5
 @export var max_health := 100 
+@export var enemy_damage := 20
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -68,3 +69,4 @@ func look_at_target(direction: Vector3) -> void:
 
 func attack() -> void:
 	print("Enemy Attack!")
+	player.health -= enemy_damage
