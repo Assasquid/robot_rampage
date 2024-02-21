@@ -1,15 +1,23 @@
 extends CharacterBody3D
+class_name Enemy
 
 const SPEED = 4.42
 
 @export var aggro_range := 12.0
 @export var attack_range := 1.5
+@export var max_health := 100 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var player
 var provoked := false
+var health: int = max_health:
+	set(new_value):
+		health = new_value
+		if health <= 0:
+			queue_free()
+		provoked = true
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
