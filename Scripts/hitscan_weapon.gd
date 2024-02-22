@@ -3,6 +3,7 @@ extends Node3D
 @export var weapon_mesh: Node3D
 @export var muzzle_flash: GPUParticles3D
 @export var muzzle_flash2: GPUParticles3D
+@export var sparks: PackedScene
 
 @export var fire_rate := 14.0
 @export var recoil := 0.05
@@ -31,3 +32,6 @@ func shoot() -> void:
 	weapon_mesh.position.z += recoil
 	if collider is Enemy:
 		collider.health -= weapon_damage
+	var spark = sparks.instantiate()
+	add_child(spark)
+	spark.global_position = ray_cast_3d.get_collision_point()

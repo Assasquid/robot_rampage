@@ -62,23 +62,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -0.7)
 [node name="MuzzleFlash" type="GPUParticles3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3, -1.8)
 material_override = SubResource("StandardMaterial3D_qowly")
+cast_shadow = 0
 emitting = false
 lifetime = 0.07
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 visibility_aabb = AABB(-4, -4, -2.35268, 8, 8, 4.70535)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_y6udb")
 draw_pass_1 = SubResource("BoxMesh_24fyk")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3, -1.8)
 material_override = SubResource("StandardMaterial3D_pcre2")
+cast_shadow = 0
 emitting = false
 amount = 32
 lifetime = 0.05
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_4ltgj")
 draw_pass_1 = SubResource("BoxMesh_eevd8")

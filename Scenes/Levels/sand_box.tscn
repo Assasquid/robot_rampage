@@ -716,6 +716,110 @@ use_collision = true
 size = Vector3(57, 0.2, 1)
 material = ExtResource("5_47xnw")
 
+[node name="Column32" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column36" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column39" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column42" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column43" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column47" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column33" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column34" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column35" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column40" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column41" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column44" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
+[node name="Column45" type="CSGCylinder3D" parent="NavigationRegion3D/LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180, 30, -60)
+use_collision = true
+radius = 10.0
+height = 600.0
+sides = 20
+material = ExtResource("4_bglnl")
+
 [node name="Enemy" parent="." instance=ExtResource("7_yi0pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 27)
 
