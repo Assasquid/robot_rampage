@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://wpy1t54g34vt"]
+[gd_scene load_steps=9 format=3 uid="uid://wpy1t54g34vt"]
 
 [ext_resource type="FontFile" uid="uid://64ux87pgtpea" path="res://Assets/Anton-Regular.ttf" id="1_m6dlr"]
 [ext_resource type="Script" path="res://Scripts/game_over_menu.gd" id="2_bvdjt"]
 [ext_resource type="FontFile" uid="uid://c2458rc17xpyu" path="res://Assets/PermanentMarker-Regular.ttf" id="3_214fm"]
+[ext_resource type="Shader" uid="uid://c1lqawqcc75v4" path="res://Materials/Shaders/game_over_menu.tres" id="3_f1lta"]
 
 [sub_resource type="Theme" id="Theme_04abg"]
 default_font = ExtResource("1_m6dlr")
 default_font_size = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd0uy"]
+shader = ExtResource("3_f1lta")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lnx40"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fmoh2"]
 font = ExtResource("3_214fm")
@@ -22,6 +28,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_04abg")
 script = ExtResource("2_bvdjt")
+
+[node name="BackgroundBlur" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_xd0uy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_lnx40")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
