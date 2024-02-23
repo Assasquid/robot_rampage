@@ -13,12 +13,16 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var mouse_motion := Vector2.ZERO
 var health: int = max_health:
 	set(new_value):
+		if new_value < health:
+			damage_animation_player.stop(false)
+			damage_animation_player.play("TakeDamage")
 		health = new_value
 		print(health)
 		if health <= 0:
 			get_tree().quit()
 
 @onready var camera_pivot: Node3D = $CameraPivot
+@onready var damage_animation_player: AnimationPlayer = $DamageTexture/DamageAnimationPlayer
 
 
 func _ready() -> void:
