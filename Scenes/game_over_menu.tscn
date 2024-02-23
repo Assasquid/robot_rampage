@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://wpy1t54g34vt"]
+
+[ext_resource type="FontFile" uid="uid://64ux87pgtpea" path="res://Assets/Anton-Regular.ttf" id="1_m6dlr"]
+[ext_resource type="Script" path="res://Scripts/game_over_menu.gd" id="2_bvdjt"]
+[ext_resource type="FontFile" uid="uid://c2458rc17xpyu" path="res://Assets/PermanentMarker-Regular.ttf" id="3_214fm"]
+
+[sub_resource type="Theme" id="Theme_04abg"]
+default_font = ExtResource("1_m6dlr")
+default_font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmoh2"]
+font = ExtResource("3_214fm")
+font_size = 96
+
+[node name="GameOverMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_04abg")
+script = ExtResource("2_bvdjt")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "YOU DEAD SON"
+label_settings = SubResource("LabelSettings_fmoh2")
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "NOPE."
+
+[connection signal="button_up" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
