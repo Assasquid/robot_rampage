@@ -13,6 +13,29 @@ func _unhandled_input(event: InputEvent) -> void:
 		equip(weapon_1)
 	if event.is_action_pressed("weapon_2"):
 		equip(weapon_2)
+	if event.is_action_pressed("next_weapon"):
+		next_weapon()
+	if event.is_action_pressed("previous_weapon"):
+		previous_weapon()
+
+
+func next_weapon() -> void:
+	var index = get_current_index()
+	index = wrapi(index + 1, 0, get_child_count())
+	equip(get_child(index))
+
+
+func previous_weapon() -> void:
+	var index = get_current_index()
+	index = wrapi(index -1, 0, get_child_count())
+	equip(get_child(index))
+
+
+func get_current_index() -> int:
+	for index in get_child_count():
+		if get_child(index).visible:
+			return index
+	return 0
 
 
 func equip(active_weapon: Node3D) -> void:
