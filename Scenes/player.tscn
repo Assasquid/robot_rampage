@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://du507tj6ct103"]
+[gd_scene load_steps=17 format=3 uid="uid://du507tj6ct103"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_mk0d5"]
 [ext_resource type="Script" path="res://Scripts/smooth_camera.gd" id="2_7c6cc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dwwj3a5x1vt0r" path="res://Assets/damage.png" id="5_uhafh"]
 [ext_resource type="PackedScene" uid="uid://wpy1t54g34vt" path="res://Scenes/game_over_menu.tscn" id="6_4bjh2"]
 [ext_resource type="Script" path="res://Scripts/ammo_handler.gd" id="6_kat1c"]
+[ext_resource type="FontFile" uid="uid://64ux87pgtpea" path="res://Assets/Anton-Regular.ttf" id="9_jvyen"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_156u1"]
 
@@ -75,6 +76,15 @@ _data = {
 "TakeDamage": SubResource("Animation_awvfc")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_kpmk8"]
+font = ExtResource("9_jvyen")
+font_size = 64
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_mk0d5")
 
@@ -126,8 +136,9 @@ ammo_handler = NodePath("../../AmmoHandler")
 ammo_handler = NodePath("../../AmmoHandler")
 ammo_type = 1
 
-[node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera"]
+[node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("ammo_label")]
 script = ExtResource("6_kat1c")
+ammo_label = NodePath("../../../../MarginContainer/AmmoLabel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -158,6 +169,25 @@ texture = ExtResource("5_uhafh")
 libraries = {
 "": SubResource("AnimationLibrary_qlpt2")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="AmmoLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "999"
+label_settings = SubResource("LabelSettings_kpmk8")
 
 [node name="GameOverMenu" parent="." instance=ExtResource("6_4bjh2")]
 visible = false
