@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtdqrb244x3wg"]
+[gd_scene load_steps=14 format=3 uid="uid://dtdqrb244x3wg"]
 
 [ext_resource type="PackedScene" uid="uid://du507tj6ct103" path="res://Scenes/player.tscn" id="1_uvhpn"]
 [ext_resource type="Material" uid="uid://tjyna3qf3xw7" path="res://Materials/dark_gray.tres" id="2_6erlh"]
@@ -7,7 +7,8 @@
 [ext_resource type="Material" uid="uid://bcowfbkdlkkgg" path="res://Materials/metallic_white.tres" id="4_bglnl"]
 [ext_resource type="Material" uid="uid://db5l68v7rqwyp" path="res://Materials/item_orange.tres" id="5_47xnw"]
 [ext_resource type="PackedScene" uid="uid://b1h5qe36xiwvh" path="res://Scenes/enemy.tscn" id="7_yi0pb"]
-[ext_resource type="PackedScene" uid="uid://dvtj8chco1eh8" path="res://Scenes/Pickups/pickup.tscn" id="8_0ljou"]
+[ext_resource type="PackedScene" uid="uid://dqqxawgavm7lr" path="res://Scenes/Pickups/bullet_pickup.tscn" id="9_bfjgv"]
+[ext_resource type="PackedScene" uid="uid://boxbpf0g7xmwc" path="res://Scenes/Pickups/small_bullet_pickup.tscn" id="10_v03fh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3von"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -880,38 +881,31 @@ transform = Transform3D(-0.866025, 0, -0.499999, 0, 1, 0, 0.499999, 0, -0.866025
 [node name="Enemy13" parent="Enemies" instance=ExtResource("7_yi0pb")]
 transform = Transform3D(-0.866025, 0, -0.499999, 0, 1, 0, 0.499999, 0, -0.866025, 5.81345, 0, 52.0692)
 
-[node name="Pickup" parent="." instance=ExtResource("8_0ljou")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 11)
-ammo_type = 1
+[node name="Pickups" type="Node3D" parent="."]
 
-[node name="Pickup4" parent="." instance=ExtResource("8_0ljou")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 22, -11)
-amount = 5
-
-[node name="Pickup5" parent="." instance=ExtResource("8_0ljou")]
+[node name="BulletPickup" parent="Pickups" instance=ExtResource("9_bfjgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 22, 11)
-amount = 5
 
-[node name="Pickup6" parent="." instance=ExtResource("8_0ljou")]
+[node name="BulletPickup2" parent="Pickups" instance=ExtResource("9_bfjgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 21, 1)
-amount = 5
 
-[node name="Pickup2" parent="." instance=ExtResource("8_0ljou")]
+[node name="BulletPickup3" parent="Pickups" instance=ExtResource("9_bfjgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -11)
-amount = 5
 
-[node name="Pickup3" parent="." instance=ExtResource("8_0ljou")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
-ammo_type = 1
+[node name="BulletPickup4" parent="Pickups" instance=ExtResource("9_bfjgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 22, -11)
 
-[node name="Pickup7" parent="." instance=ExtResource("8_0ljou")]
+[node name="SmallBulletPickup" parent="Pickups" instance=ExtResource("10_v03fh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, 22)
-ammo_type = 1
 
-[node name="Pickup8" parent="." instance=ExtResource("8_0ljou")]
+[node name="SmallBulletPickup2" parent="Pickups" instance=ExtResource("10_v03fh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 19)
-ammo_type = 1
 
-[node name="Pickup9" parent="." instance=ExtResource("8_0ljou")]
+[node name="SmallBulletPickup3" parent="Pickups" instance=ExtResource("10_v03fh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, 11)
-ammo_type = 1
+
+[node name="SmallBulletPickup4" parent="Pickups" instance=ExtResource("10_v03fh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+
+[node name="SmallBulletPickup5" parent="Pickups" instance=ExtResource("10_v03fh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 11)

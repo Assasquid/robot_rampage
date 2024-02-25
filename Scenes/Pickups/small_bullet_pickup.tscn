@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://boxbpf0g7xmwc"]
+
+[ext_resource type="PackedScene" uid="uid://dvtj8chco1eh8" path="res://Scenes/Pickups/pickup.tscn" id="1_v755n"]
+[ext_resource type="PackedScene" uid="uid://drdcxnr0hih21" path="res://Scenes/Pickups/small_bullet_mesh.tscn" id="2_7ubl0"]
+
+[node name="SmallBulletPickup" instance=ExtResource("1_v755n")]
+ammo_type = 1
+
+[node name="SmallBulletMesh" parent="." index="0" instance=ExtResource("2_7ubl0")]

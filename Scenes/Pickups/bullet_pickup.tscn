@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqqxawgavm7lr"]
+
+[ext_resource type="PackedScene" uid="uid://dvtj8chco1eh8" path="res://Scenes/Pickups/pickup.tscn" id="1_jj8bm"]
+[ext_resource type="PackedScene" uid="uid://dpg2yy3b4xou0" path="res://Scenes/Pickups/bullet_mesh.tscn" id="2_v71x8"]
+
+[node name="BulletPickup" instance=ExtResource("1_jj8bm")]
+amount = 5
+
+[node name="BulletMesh" parent="." index="0" instance=ExtResource("2_v71x8")]

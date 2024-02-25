@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvtj8chco1eh8"]
+[gd_scene load_steps=6 format=3 uid="uid://dvtj8chco1eh8"]
 
 [ext_resource type="Script" path="res://Scenes/Pickups/pickup.gd" id="1_ch7c4"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_253bu"]
-size = Vector3(0.5, 0.5, 0.5)
+[ext_resource type="Shader" uid="uid://bsu215dj0cvkp" path="res://Materials/Shaders/fresnel_aura.tres" id="2_cdhlr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pjx5i"]
 radius = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya10v"]
+render_priority = 0
+shader = ExtResource("2_cdhlr")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7wx38"]
+
 [node name="Pickup" type="Area3D"]
 script = ExtResource("1_ch7c4")
 
-[node name="AmmoMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, 0, 0)
-mesh = SubResource("BoxMesh_253bu")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pjx5i")
+
+[node name="FresnelAura" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_ya10v")
+mesh = SubResource("SphereMesh_7wx38")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
