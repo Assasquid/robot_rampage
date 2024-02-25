@@ -24,6 +24,7 @@ var health: int = max_health:
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var damage_animation_player: AnimationPlayer = $DamageTexture/DamageAnimationPlayer
 @onready var game_over_menu: Control = $GameOverMenu
+@onready var ammo_handler: AmmoHandler = %AmmoHandler
 
 
 func _ready() -> void:
