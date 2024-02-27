@@ -11,4 +11,4 @@ sparks = ExtResource("2_enkj3")
 one_shot = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -100)
+target_position = Vector3(0, 0, -200)
