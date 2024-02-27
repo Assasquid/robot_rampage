@@ -1,0 +1,363 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6ly53vo0dnnr"]
+
+[ext_resource type="Script" path="res://Scripts/transition_corridor.gd" id="1_fry6e"]
+[ext_resource type="Material" uid="uid://cuxwxu8t4ap5q" path="res://Materials/dark_gray_textured.tres" id="1_xdc1i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjpkr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_oeuyg"]
+sky_material = SubResource("ProceduralSkyMaterial_bjpkr")
+
+[sub_resource type="Environment" id="Environment_fgr2r"]
+background_mode = 2
+sky = SubResource("Sky_oeuyg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eyjd"]
+size = Vector3(6, 8, 1)
+
+[node name="MainLevel" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fgr2r")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -11.75)
+size = Vector3(8, 1, 6.5)
+
+[node name="TransitionCorridor" type="Node3D" parent="."]
+script = ExtResource("1_fry6e")
+
+[node name="ExteriorTransitionCorridor" type="CSGBox3D" parent="TransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, 1.5)
+material_override = ExtResource("1_xdc1i")
+use_collision = true
+size = Vector3(8, 10, 20)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="TransitionCorridor/ExteriorTransitionCorridor"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TransitionCorridor/ExteriorTransitionCorridor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+material_override = ExtResource("1_xdc1i")
+radius = 3.0
+height = 22.0
+sides = 48
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TransitionCorridor/ExteriorTransitionCorridor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+size = Vector3(6, 5, 22)
+
+[node name="InteriorTransitionCorridor" type="CSGBox3D" parent="TransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3.5, 12.5)
+material_override = ExtResource("1_xdc1i")
+use_collision = true
+flip_faces = true
+size = Vector3(6, 5, 42)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="TransitionCorridor/InteriorTransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="TransitionCorridor/InteriorTransitionCorridor/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492216, 3, -20.9928)
+visible = false
+polygon = PackedVector2Array(0.5, -7.5, -3, -7.5, -3, 1, 1, 1, 4, 1, 4, -7.5)
+depth = 0.01
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TransitionCorridor/InteriorTransitionCorridor/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+material_override = ExtResource("1_xdc1i")
+flip_faces = true
+radius = 3.0
+height = 42.0
+sides = 48
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TransitionCorridor/InteriorTransitionCorridor/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3, 21)
+flip_faces = true
+radius = 1.0
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TransitionCorridor/InteriorTransitionCorridor/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 21)
+flip_faces = true
+size = Vector3(2, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TransitionCorridor/InteriorTransitionCorridor/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 24)
+flip_faces = true
+size = Vector3(6, 4, 5)
+
+[node name="MakeExteriorAppear" type="Area3D" parent="TransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransitionCorridor/MakeExteriorAppear"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+shape = SubResource("BoxShape3D_6eyjd")
+
+[node name="MakeInteriorDisappear" type="Area3D" parent="TransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, -9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransitionCorridor/MakeInteriorDisappear"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+shape = SubResource("BoxShape3D_6eyjd")
+
+[node name="Columns" type="Node3D" parent="TransitionCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -9)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -9)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -7)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D20" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -7)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -5)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D19" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -5)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -3)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D18" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -3)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D21" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -17)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D25" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -19)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D26" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -21)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D22" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -15)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D23" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -13)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D24" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -11)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -1)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D27" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -19)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D32" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -21)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D28" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -17)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D29" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -15)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D30" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -13)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D31" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, -11)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D17" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, -1)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 1)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 1)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 3)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 3)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 5)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 5)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 7)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 7)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 9)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D39" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 11)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D40" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 13)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D41" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 17)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D42" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 15)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 9)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D33" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 11)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D34" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 13)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D35" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 15)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D36" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 17)
+use_collision = true
+radius = 0.25
+height = 8.0
+
+[node name="CSGCylinder3D37" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 5, 19.5)
+use_collision = true
+height = 8.0
+
+[node name="CSGCylinder3D38" type="CSGCylinder3D" parent="TransitionCorridor/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 5, 19.5)
+use_collision = true
+height = 8.0
