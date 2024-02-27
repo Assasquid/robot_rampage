@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var mouse_sensitivity := 0.001
 @export var max_health := 100
