@@ -9,8 +9,8 @@ enum ammo_type {
 }
 
 var ammo_storage := {
-	ammo_type.BULLET: 20,
-	ammo_type.SMALL_BULLET: 120 
+	ammo_type.BULLET: 10,
+	ammo_type.SMALL_BULLET: 80 
 }
 
 func has_ammo(type: ammo_type) -> bool:

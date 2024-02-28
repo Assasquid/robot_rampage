@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var mouse_sensitivity := 0.001
 @export var max_health := 100
+@export var speed := 6.0
 @export var aim_multiplier := 0.7
 @export var aim_mouse_motion_multiplier := 0.4
 @export var aim_speed_multiplier := 0.54
@@ -11,8 +12,6 @@ extends CharacterBody3D
 ## This is to control the feel of the jump. It modifies the gravity when falling back down.
 @export var fall_multiplier := 2.6
 @export var jump_height := 1.0
-
-const SPEED = 5.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -85,14 +84,14 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 		if Input.is_action_pressed("aim"):
 			velocity.x *= aim_speed_multiplier
 			velocity.z *= aim_speed_multiplier
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 
