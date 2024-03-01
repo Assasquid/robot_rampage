@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1h5qe36xiwvh"]
+[gd_scene load_steps=14 format=3 uid="uid://b1h5qe36xiwvh"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_j43gh"]
 [ext_resource type="PackedScene" uid="uid://8e888qenupe4" path="res://Assets/Drone.glb" id="4_10mbe"]
@@ -59,6 +59,22 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_nw3qo"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drone2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.4, 0), Vector3(0, 0.5, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_t4s6a"]
 length = 0.001
 tracks/0/type = "value"
@@ -98,22 +114,6 @@ tracks/2/keys = {
 "values": [Vector3(1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_nw3qo"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Drone2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0.5, 0), Vector3(0, 0.4, 0), Vector3(0, 0.5, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_joemi"]
 _data = {
 "Attack": SubResource("Animation_2h24y"),
@@ -121,8 +121,34 @@ _data = {
 "RESET": SubResource("Animation_t4s6a")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8er4"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vkvh"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a2djo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2a6k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y4jer"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ybpkd"]
+states/Attack/node = SubResource("AnimationNodeAnimation_d8er4")
+states/Attack/position = Vector2(442, 147)
+states/End/position = Vector2(730, 100)
+states/Idle/node = SubResource("AnimationNodeAnimation_6vkvh")
+states/Idle/position = Vector2(442, 54)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_a2djo"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_f2a6k"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_y4jer")]
+
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_j43gh")
+
+[node name="Drone2" parent="." instance=ExtResource("4_10mbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wq30j")
@@ -136,5 +162,9 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="Drone2" parent="." instance=ExtResource("4_10mbe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_joemi")
+}
+tree_root = SubResource("AnimationNodeStateMachine_ybpkd")
+anim_player = NodePath("../AnimationPlayer")
