@@ -261,6 +261,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 64.5)
 flip_faces = true
 size = Vector3(20, 20, 60)
 
+[node name="Room14" type="CSGBox3D" parent="NavigationRegion3D/Rooms/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14, 115.75)
+flip_faces = true
+size = Vector3(6, 4, 35.5)
+
 [node name="SmallDoor" type="CSGCombiner3D" parent="NavigationRegion3D/Rooms/CSGCombiner3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 21)
 
