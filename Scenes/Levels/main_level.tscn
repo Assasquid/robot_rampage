@@ -59,6 +59,7 @@ environment = SubResource("Environment_fgr2r")
 
 [node name="Player" parent="." instance=ExtResource("3_qdmw4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 0)
+mouse_sensitivity = 0.003
 
 [node name="Enemies" type="Node3D" parent="."]
 

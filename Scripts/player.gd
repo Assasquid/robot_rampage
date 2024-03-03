@@ -22,7 +22,6 @@ var health: int = max_health:
 			damage_animation_player.stop(false)
 			damage_animation_player.play("TakeDamage")
 		health = new_value
-		print(health)
 		if health <= 0:
 			game_over_menu.game_over()
 

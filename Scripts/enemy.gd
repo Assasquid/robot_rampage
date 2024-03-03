@@ -69,5 +69,4 @@ func look_at_target(direction: Vector3) -> void:
 
 
 func attack() -> void:
-	print("Enemy Attack!")
 	player.health -= enemy_damage
