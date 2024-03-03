@@ -47,3 +47,6 @@ func equip(active_weapon: Node3D) -> void:
 		else:
 			child.visible = false
 			child.set_process(false)            
+
+func get_weapon_ammo() -> AmmoHandler.ammo_type:
+	return get_child(get_current_index()).ammo_type
